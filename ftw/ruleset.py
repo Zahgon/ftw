@@ -75,8 +75,7 @@ class Output(object):
         Extract the value of key from dictionary if available
         and process it as a python regex
         """
-        return re.compile(self.output_dict[key]) if \
-            key in self.output_dict else None
+        pass
 
 
 class Input(object):
@@ -146,8 +145,7 @@ class Stage(object):
         self.id = self.build_id()
 
     def build_id(self):
-        rule_name = self.test.ruleset_meta["name"].split('.')[0]
-        return f'{rule_name}-{self.test.test_index}-{self.stage_index}'
+        pass
 
 
 class Test(object):
@@ -168,8 +166,7 @@ class Test(object):
         """
         Processes and loads an array of stages from the test dictionary
         """
-        return [Stage(stage_dict['stage'], index, self)
-                for index, stage_dict in enumerate(self.test_dict['stages'])]
+        pass
 
 
 class Ruleset(object):
@@ -190,14 +187,4 @@ class Ruleset(object):
         Processes a loaded YAML document and
         creates test objects based on input
         """
-        try:
-            return [Test(test_dict, index, self.meta)
-                    for index, test_dict in enumerate(self.yaml_file['tests'])]
-        except errors.TestError as e:
-            e.args[1]['meta'] = self.meta
-            raise e
-        except Exception as e:
-            raise Exception(
-                'Caught error. Message: %s on test with metadata: %s'
-                % (str(e), str(self.meta))
-            )
+        pass
